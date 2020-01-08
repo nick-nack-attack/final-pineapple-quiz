@@ -94,36 +94,62 @@ let theScore = -10;
 let questionNumber = 0;
 let timesPlayed = 0
 
+// Run this to make the HTML code
 function makeTheQuestionHTML(){ 
   let questionHTML =  $(`
   <form>
   <fieldset>
     <legend><h1>Are you ready to pineapple?</h1></legend>
-    <h2>That's pineapple code for "I'm ready to pineapple."</h2>
-    <button type="submit" form="form1" value="Submit">Answer1</button>
-    <button type="submit" form="form1" value="Submit">Answer2</button>
-    <button type="submit" form="form1" value="Submit">Answer3</button>
-    <input id="answer" type="radio" name="group1" value="wrong"> Josh<br>
+    <p>That's pineapple code for "I'm ready to pineapple." It's a pretty intuitive language. This challange will be tough. It will certainly be about pineapples. You can definitely count on that. Ready to begin?</p>
+    <button type="submit" form="form" value="correct">Skip (Not allowed)</button>
+    <button type="submit" form="form" value="correct">No (Disabled)</button>
+    <button type="submit" form="form" value="correct">Yes</button>
   </fieldset>
 </form>
   `)
   return questionHTML
 }
 
+// Checks to see if this is the first time the user has played
+// and, if so, runs a function to create the HTML
 function generateQuestion() {
   if (timesPlayed === 0) { 
     
     return makeTheQuestionHTML()
 
-    // $(``).appendTo($('.main-area'));
   }
 }
 
+// Run this first to load in the first question
 function initializeQuiz() {
   if (questionNumber === 0) {
     $('.main-area').append(generateQuestion())
   }
 }
+
+// Do this when the user gets the right answer
+function correctAnswer() {
+  $(`CORRECT ANSWER!`).append($('.main-area'));
+}
+
+// When a user selects one of the answer buttons
+function submitAnswer(){
+  $('.announce-card').on('submit'), function(event) {
+    event.preventDefault();
+    let selected = (event.currentTarget).val();
+    let correct = STORE[questionNumber].the_correct_answer_is;
+    if (questionNumber === 0){
+      correctAnswer();
+    } else if (questionNumber !== 0) {
+      if (answer === correct) {
+        correctAnswer();
+      } else {
+        wrongAnswer();
+      }
+    }
+  }
+}
+
 
 // This runs all the functions
 function makeTheQuiz() {
