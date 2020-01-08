@@ -1,7 +1,108 @@
 * {
     box-sizing: border-box;
-}
+  }
+  
+  .container {
+    max-width: 80%;
+    margin: auto;
+  }
 
-body {
-    font-family: 'Quicksand', sans-serif;
-}
+  .title-of-quiz {
+    width: 300px;
+  }
+  
+  .quiz-card {
+    display: block;
+    border: 2px grey solid;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgb(250, 250, 250);
+    height: 500px;
+  }
+  
+  b {
+    color: green;
+  }
+  
+  .response-card-correct {
+    border: 2px green dotted;
+    margin: 20px auto;
+    padding: 10px;
+    vertical-align: center;
+    background-color: rgb(220, 255, 220);
+    height: 500px;
+  }
+
+  .response-card-wrong {
+    border: 2px red dotted;
+    margin: 20px auto;
+    padding: 10px;
+    vertical-align: center;
+    background-color: rgb(255, 220, 220);
+    height: 500px;
+  }
+
+  .announce-card {
+    display: block;
+    border: 2px black dotted;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgb(238, 255, 0);
+    height: 500px;
+  }
+  
+  img {
+    height: 100px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .main-card-image {
+      margin: 0;
+      height: 100px;
+      width: 100%;
+      background-image: url('https://ichef.bbci.co.uk/images/ic/704xn/p0735xlw.jpg');
+  }
+  
+  #main-icon {
+    height: 75px;
+  }
+
+  input[type="button"] {
+      border: 2px black solid;
+      padding: 5px 15px;
+      font-size: 15px;
+      width: 100%;
+      margin: 5px auto;
+      background-color: transparent;
+  }
+
+  input[type="button"]:hover, button:focus {
+    background-color: white;
+  }
+
+  .button-bar {
+      display: flex-wrap;
+      justify-content: flex-end;
+  }
+
+  input[type="button disabled-button"] {
+      background-color: rgb(209, 209, 209);
+  }
+
+  .disabled-button:hover, .disabled-button:focus {
+    background-color: rgb(179, 179, 179);
+  }
+ 
+  .call-to-action {
+      font-weight: bold;
+  }
+
+  .correct-answer-label {
+    font-weight: bold;
+    color: hotpink;
+  }
+
+  h1 {
+      font-size: 30px;
+  }
