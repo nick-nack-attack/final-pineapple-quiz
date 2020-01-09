@@ -138,10 +138,9 @@ function determineFinalSpeech() {
 
 function resetEverything() {
   console.log('Reset everything is running...');
-let theScore = -10;
-let questionNumber = 0;
-let timesPlayed = 1;
-let questionsAnsweredCorrectly = 0;
+theScore = -10;
+questionNumber = 0;
+questionsAnsweredCorrectly = 0;
 console.log(`
   The Score: ${theScore}
   The Question Number: ${questionNumber}
@@ -153,7 +152,7 @@ console.log(`
 function finalScore(){
   $('form').hide();
   let finalText = determineFinalSpeech();
-
+  timesPlayed++;
   $('.main-area').html(`
   <form>
     <fieldset>
@@ -202,12 +201,20 @@ if (timesPlayed === 0) {
 // Run this first to load in the first question
 function initializeQuiz() {
   console.log('initializeQuiz() is running...');
+  console.log(`The question number is: ${questionNumber}`);
+  if (timesPlayed > 0 ){
+    $('.main-area').append(generateQuestion());
+  }
   if (questionNumber === 6) {
+    console.log('questionNumber === 6');
+    resetEverything();
     $('.main-area').append(finalScore());
   }
   else if (questionNumber === 0) {
+    console.log('questionNumber === 0');
     $('.main-area').append(generateQuestion());
   } else if (questionNumber !== 0) {
+    console.log('questionNumber is not zero');
     $('.main-area').append(generateQuestion());
   }
 }
@@ -256,16 +263,20 @@ function submitAnswer() {
     let selected = event.currentTarget.value;
     let correct = STORE[questionNumber].the_correct_answer_is;
     console.log(`
+      *** This is running before the logic in submitAnswer ***
       submitAnswer() is running ...
       The value of the 'selected' is: [${selected}]
       The value of 'correct' is: [${correct}]
-      * This is running before the logic in submitAnswer *
       `);
+      if (timesPlayed > 0) {
+        resetEverything()
+        initializeQuiz();
+      }
+
       if (questionNumber === 6) {
         $('form').hide();
         console.log('The Question Number is 6. Good good good...');
-        resetEverything();
-        initializeQuiz();
+        finalScore()
       }
     else if (questionNumber === 0) {
       console.log(`It's Question ${questionNumber} so it's going to run correctAnwser() now... `);
