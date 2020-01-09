@@ -1,11 +1,9 @@
-console.log('Top of the JS');
-
 //question database
 const STORE = [{
     card_title: 'Ready to Pineapple?',
     card_text: 'You currently have negative ten points. Did you think I was going to start you off with zero points? What sort of pinapple do you think I am?',
     answer_1: 'You\'re a terrible pineapple (said on opposite day)!',
-    answer_2: 'I hate you (when \'I hate you\' means \' I love your infinite wisdom — it\' truly magisterial\')!',
+    answer_2: 'I hate you (when \'I hate you\' means \' I love your infinite wisdom. It\'s truly magisterial\')!',
     answer_3: 'Start the quiz',
     correct_answer_title: 'Great job!',
     correct_answer_text: 'All three of those were correct. I will bump you up to zero points. Now you have nothing. Which was more than you had before. You\'re welcome.',
@@ -22,7 +20,7 @@ const STORE = [{
     correct_answer_title: 'Correct!',
     correct_answer_text: 'You can plant pineapple leaves to grow a new plant.',
     wrong_answer_title: 'Absolutely not!',
-    wrong_answer_text: 'Your choice was incredibly stupid, my apologies.',
+    wrong_answer_text: 'That was an incredibly choice, my dear. What were you thinking?',
   },
   {
     card_title: 'Question 2',
@@ -33,10 +31,8 @@ const STORE = [{
     the_correct_answer_is: 'bromelain',
     correct_answer_title: 'Helicopter!',
     correct_answer_text: '... uh, bromelain, is correct. You\'re right ... facinating ... the answer to a question can be \'not\' helicopter ...',
-    correct_answer_button_1: 'Next question',
     wrong_answer_title: 'What? No!',
     wrong_answer_text: 'Correct answer is bromelain. I don\'t even know what that is but, wow, why didn\'t you?',
-    correct_answer_button_1: 'I\'ll try better next time!'
   },
   {
     card_title: 'Question 3',
@@ -47,10 +43,8 @@ const STORE = [{
     the_correct_answer_is: '18-20 months',
     correct_answer_title: 'Yup!',
     correct_answer_text: '18 to 20 months. Hurry up and be delicious, my precious perfect pineapple.',
-    correct_answer_button_1: 'Next question',
     wrong_answer_title: 'What? No!',
     wrong_answer_text: 'Correct answer is 18 to 20 months. It\'s illegal to not know that - you\'re going to pineapple jail ... maybe.',
-    correct_answer_button_1: 'I\'ll try better next time!'
   },
   {
     card_title: 'Question 4',
@@ -61,10 +55,8 @@ const STORE = [{
     the_correct_answer_is: 'one',
     correct_answer_title: 'Absolutely!',
     correct_answer_text: 'It was a dangerous question... but the answer is one. Well played.',
-    correct_answer_button_1: 'Next question',
     wrong_answer_title: 'What? No!',
     wrong_answer_text: 'Correct answer is one. That\'s one more than zero and one less than two.',
-    correct_answer_button_1: 'I\'ll try better next time!'
   },
   {
     card_title: 'Question 5',
@@ -75,10 +67,8 @@ const STORE = [{
     the_correct_answer_is: 'upside down',
     correct_answer_title: 'You got it!',
     correct_answer_text: 'Research is still pending on the explode-to-ripen method ... but until that research is completed ... they currently ripen faster upside down.',
-    correct_answer_button_1: 'Next question',
     wrong_answer_title: 'Just ... no',
     wrong_answer_text: 'Correct answer is upside down. Rosie O\'Donnell cured her depression with inversion therapy.',
-    correct_answer_button_1: 'I\'ll try better next time!'
   },
   {
     card_title: 'Final Score',
@@ -95,48 +85,64 @@ let questionNumber = 0;
 let timesPlayed = 0
 let questionsAnsweredCorrectly = 0;
 
+
+
 function makeQuestionHTML() {
-  return $(`
+  
+    console.log('makeQuestionHTML is running...');
+    let uno = questionNumber === 0 ? '${STORE[questionNumber].answer_1' : '${STORE[questionNumber].answer_1';
+    let dos = questionNumber === 0 ? '${STORE[questionNumber].answer_1' : '${STORE[questionNumber].answer_2';
+    let tres = questionNumber === 0 ? '${STORE[questionNumber].answer_1' : '${STORE[questionNumber].answer_3';
+    
+    console.log(`
+    UNO: ${uno}
+    DOS is: ${dos}
+    TRES is: ${tres}
+    `);
+
+    return $(`
   <form>
   <fieldset>
     <legend><h1>${STORE[questionNumber].card_title}</h1></legend>
     <div>Your current score is: <span class="current-score">${theScore}</span></div>
     <p>${STORE[questionNumber].card_text}</p>
-    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_1}</button>
-    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_2}">${STORE[questionNumber].answer_2}</button>
-    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_3}">${STORE[questionNumber].answer_3}</button>
+    <button type="submit" form="form" class="submitButton button" value="${questionNumber === 0 ? '${STORE[questionNumber].answer_1' : '${STORE[questionNumber].answer_1'}">${STORE[questionNumber].answer_1}</button>
+    <button type="submit" form="form" class="submitButton button" value="${questionNumber === 0 ? '${STORE[questionNumber].answer_1' : '${STORE[questionNumber].answer_2'}">${STORE[questionNumber].answer_2}</button>
+    <button type="submit" form="form" class="submitButton button" value="${questionNumber === 0 ? '${STORE[questionNumber].answer_1' : '${STORE[questionNumber].answer_3'}">${STORE[questionNumber].answer_3}</button>
   </fieldset>
 </form>
   `)
+  
 }
 
 // Run this to make the HTML code
-function makeTheFirstQuestionHTML() {
-  let questionHTML = $(`
-  <form>
-  <fieldset>
-    <legend><h1>${STORE[questionNumber].card_title}</h1></legend>
-    <div>Your current score is: <span class="current-score">${theScore}</span></div>
-    <p>${STORE[questionNumber].card_text}</p>
-    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_1}</button>
-    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_2}</button>
-    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_3}</button>
-  </fieldset>
-</form>
-  `)
-  return questionHTML
-}
+//function makeTheFirstQuestionHTML() {
+  //let questionHTML = $(`
+  //<form>
+  //<fieldset>
+  //  <legend><h1>${STORE[questionNumber].card_title}</h1></legend>
+  //  <div>Your current score is: <span class="current-score">${theScore}</span></div>
+  //  <p>${STORE[questionNumber].card_text}</p>
+  //  <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_1}</button>
+  //  <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_2}">${STORE[questionNumber].answer_2}</button>
+  //  <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_3}">${STORE[questionNumber].answer_3}</button>
+  //</fieldset>
+//</form>
+ // `)
+ // return questionHTML
+//}
 
 function updateScore(rightOrWrong) {
+  console.log('updateScore() is running...');
   if (rightOrWrong === 0) {
-    console.log('You answered correctly!');
-  theScore += 10;
-  $('.current-score').text(theScore);
-} else if (rightOrWrong === 1) {
-  console.log('You answered correctly!');
-  theScore -= 10;
-  $('.current-score').text(theScore);
-}
+    console.log('You answered correctly! Adding 10 points.');
+    theScore += 10;
+    $('.current-score').text(theScore);
+  } else if (rightOrWrong === 1) {
+    console.log('You answered WRONG!! Minus 10 points!');
+    theScore -= 10;
+    $('.current-score').text(theScore);
+  }
 }
 
 function updateQuestionNumber() {
@@ -148,18 +154,18 @@ function updateQuestionNumber() {
 function generateQuestion() {
   if (timesPlayed === 0) {
     if (questionNumber === 0)
-    console.log('generateQuestion ran');
-    return makeTheFirstQuestionHTML()
+      console.log(`generateQuestion() is running because ${questionNumber} is 0.`);
+    return makeQuestionHTML()
   } else if (questionNumber > 0) {
-    console.log('generate a non-zero question');
+    console.log(`generateQuestion() is running beacause ${questionNumber} is > 0.`);
     return makeQuestionHTML()
   }
 }
 
 // Run this first to load in the first question
 function initializeQuiz() {
+  console.log('initializeQuiz() is running...');
   if (questionNumber === 0) {
-    console.log('initializeQuiz ran');
     $('.main-area').append(generateQuestion());
   } else if (questionNumber !== 0) {
     $('.main-area').append(generateQuestion());
@@ -168,18 +174,20 @@ function initializeQuiz() {
 
 // Do this when the user gets the right answer
 function correctAnswer() {
-  console.log('correctAnswer ran');
+  console.log('correctAnswer() is running...');
   $('form').hide();
   $('.main-area').html(`<form>
     <fieldset>
       <legend><h1>${STORE[questionNumber].correct_answer_title}</h1></legend>
       <div>Your current score is: <span class="current-score">${theScore}</span></div>
       <p>${STORE[questionNumber].correct_answer_text}</p>
-      <button type="button" class="nextButton button">Next Question</button>
+      <button type="submit" class="nextButton button">Next Question</button>
     </fieldset>
   </form>`)
+  console.log(`Correct: UpdateScore use to be [${questionNumber}]...`);
   updateScore(0);
   updateQuestionNumber();
+  console.log(`— — — and now it's [${questionNumber}] — — —`);
 }
 
 function wrongAnswer() {
@@ -190,21 +198,14 @@ function wrongAnswer() {
       <legend><h1>${STORE[questionNumber].wrong_answer_title}</h1></legend>
       <div>Your current score is: <span class="current-score">${theScore}</span></div>
       <p>${STORE[questionNumber].wrong_answer_text}</p>
-      <button type="button" class="nextButton button">Next Question</button>
+      <button type="submit" class="nextButton button">Next Question</button>
     </fieldset>
   </form>
       `)
+      console.log(`Incorrect: UpdateScore use to be [${questionNumber}]...`);
   updateScore(1);
   updateQuestionNumber();
-};
-
-function nextQuestion() {
-  $('.annouce-card').on('click', '.nextButton', function (event) {
-    $('form').hide();
-    console.log('nextQuestion ran!');
-    
-    initializeQuiz()
-  })
+  console.log(`— — —and now it's [${questionNumber}] — — —`);
 };
 
 // When a user selects one of the answer buttons
@@ -214,29 +215,50 @@ function submitAnswer() {
     let selected = event.currentTarget.value;
     let correct = STORE[questionNumber].the_correct_answer_is;
     console.log(`
-      submitAnswer - The value of the selected button is: ${selected}
+      submitAnswer() is running ...
+      The value of the 'selected' is: [${selected}]
+      The value of 'correct' is: [${correct}]
+      * This is running before the logic in submitAnswer *
       `);
     if (questionNumber === 0) {
-      console.log(`The question number is :${questionNumber} and should be 0.
-      CORRECT ANSWER will run.`);
-      correctAnswer();  
+      console.log(`It's Question ${questionNumber} so it's going to run correctAnwser() now... `);
+      correctAnswer();
     } else if (questionNumber > 0) {
       if (selected === 'Next Question') {
         $('form').hide();
-        console.log('nextQuestion ran!');
+        console.log('XXXXXXXXXXXXXXX');
         initializeQuiz();
-      } else if (selected === correct) {
-          console.log(`The question number is :${questionNumber}.
-          selected equals correct!`);
-          correctAnswer();
-        } else {
-          console.log(`The question number is :${questionNumber}.
-          selected equals WRONG AHHHH!`);
-          wrongAnswer();
-        }
+      } else if (selected === '') {
+        console.log(`
+        It thinks selected is empty.
+        We are on Question ${questionNumber}.
+        'Selected' number is :${selected}.
+        'correct' answer is: ${correct}
+        This here should be equal to above: ${STORE[questionNumber].the_correct_answer_is}.
+        `);
+        $('form').hide();
+        initializeQuiz();
+      } else if (selected === STORE[questionNumber].the_correct_answer_is) {
+        console.log(`
+          Selected is exactly the correct answer...
+          The selected variable is ${selected}.
+          'Question number' is :${questionNumber}.
+          'Selected' number is :${questionNumber}.
+          The selected choice was CORRECT.
+          `);
+        correctAnswer();
+      } else {
+        console.log(`
+          Else is running because 'selected' doesn't equal the correct answer...
+          'Question number' is :${questionNumber}.
+          'Selected' number is :${questionNumber}.
+          The selected choice was INCORRECT.
+          `);
+        wrongAnswer();
+      }
     }
   })
-} 
+}
 
 
 
@@ -245,7 +267,7 @@ function makeTheQuiz() {
   initializeQuiz();
   generateQuestion()
   submitAnswer()
-  nextQuestion()
+  //nextQuestion()
 }
 
 
