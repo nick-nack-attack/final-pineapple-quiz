@@ -102,9 +102,9 @@ function makeQuestionHTML() {
     <legend><h1>${STORE[questionNumber].card_title}</h1></legend>
     <div>Your current score is: <span class="current-score">${theScore}</span></div>
     <p>${STORE[questionNumber].card_text}</p>
-    <button type="submit" form="form" class="button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_1}</button>
-    <button type="submit" form="form" class="button" value="${STORE[questionNumber].answer_2}">${STORE[questionNumber].answer_2}</button>
-    <button type="submit" form="form" class="button" value="${STORE[questionNumber].answer_3}">${STORE[questionNumber].answer_3}</button>
+    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_1}</button>
+    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_2}">${STORE[questionNumber].answer_2}</button>
+    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_3}">${STORE[questionNumber].answer_3}</button>
   </fieldset>
 </form>
   `)
@@ -118,9 +118,9 @@ function makeTheFirstQuestionHTML() {
     <legend><h1>${STORE[questionNumber].card_title}</h1></legend>
     <div>Your current score is: <span class="current-score">${theScore}</span></div>
     <p>${STORE[questionNumber].card_text}</p>
-    <button type="submit" form="form" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_1}</button>
-    <button type="submit" form="form" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_2}</button>
-    <button type="submit" form="form" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_3}</button>
+    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_1}</button>
+    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_2}</button>
+    <button type="submit" form="form" class="submitButton button" value="${STORE[questionNumber].answer_1}">${STORE[questionNumber].answer_3}</button>
   </fieldset>
 </form>
   `)
@@ -128,11 +128,11 @@ function makeTheFirstQuestionHTML() {
 }
 
 function updateScore(rightOrWrong) {
-  if (rightOrWrong === 'right') {
+  if (rightOrWrong === 0) {
     console.log('You answered correctly!');
   theScore += 10;
   $('.current-score').text(theScore);
-} else {
+} else if (rightOrWrong === 1) {
   console.log('You answered correctly!');
   theScore -= 10;
   $('.current-score').text(theScore);
@@ -146,10 +146,11 @@ function updateQuestionNumber() {
 // Checks to see if this is the first time the user has played
 // and, if so, runs a function to create the HTML
 function generateQuestion() {
-  if (timesPlayed === 0 && questionNumber !== 0) {
+  if (timesPlayed === 0) {
+    if (questionNumber === 0)
     console.log('generateQuestion ran');
     return makeTheFirstQuestionHTML()
-  } else {
+  } else if (questionNumber > 0) {
     console.log('generate a non-zero question');
     return makeQuestionHTML()
   }
@@ -174,10 +175,11 @@ function correctAnswer() {
       <legend><h1>${STORE[questionNumber].correct_answer_title}</h1></legend>
       <div>Your current score is: <span class="current-score">${theScore}</span></div>
       <p>${STORE[questionNumber].correct_answer_text}</p>
-      <button type="button" class="nextButton">Next Question</button>
+      <button type="button" class="nextButton button">Next Question</button>
     </fieldset>
   </form>`)
-  updateScore('correct');
+  updateScore(0);
+  updateQuestionNumber();
 }
 
 function wrongAnswer() {
@@ -188,11 +190,21 @@ function wrongAnswer() {
       <legend><h1>${STORE[questionNumber].wrong_answer_title}</h1></legend>
       <div>Your current score is: <span class="current-score">${theScore}</span></div>
       <p>${STORE[questionNumber].wrong_answer_text}</p>
-      <button type="button" class="nextButton">Next Question</button>
+      <button type="button" class="nextButton button">Next Question</button>
     </fieldset>
   </form>
       `)
-  updateScore('incorrect');
+  updateScore(1);
+  updateQuestionNumber();
+};
+
+function nextQuestion() {
+  $('.annouce-card').on('click', '.nextButton', function (event) {
+    $('form').hide();
+    console.log('nextQuestion ran!');
+    
+    initializeQuiz()
+  })
 };
 
 // When a user selects one of the answer buttons
@@ -205,28 +217,27 @@ function submitAnswer() {
       submitAnswer - The value of the selected button is: ${selected}
       `);
     if (questionNumber === 0) {
-      console.log(`The question number is :${questionNumber} and should be 0. CORRECT ANSWER will run.`);
-      correctAnswer();
-    } else if (questionNumber !== 0) {
-      if (selected === correct) {
-        console.log(`The question number is :${questionNumber}. selected equals correct!`);
-        correctAnswer();
-      } else {
-        console.log(`The question number is :${questionNumber}. selected equals wrong!`);
-        wrongAnswer();
-      }
+      console.log(`The question number is :${questionNumber} and should be 0.
+      CORRECT ANSWER will run.`);
+      correctAnswer();  
+    } else if (questionNumber > 0) {
+      if (selected === 'Next Question') {
+        $('form').hide();
+        console.log('nextQuestion ran!');
+        initializeQuiz();
+      } else if (selected === correct) {
+          console.log(`The question number is :${questionNumber}.
+          selected equals correct!`);
+          correctAnswer();
+        } else {
+          console.log(`The question number is :${questionNumber}.
+          selected equals WRONG AHHHH!`);
+          wrongAnswer();
+        }
     }
-  });
-}
-
-function nextQuestion() {
-  $('.annouce-card').on('click', '.nextButton', function (event) {
-    $('form').hide();
-    console.log('nextQuestion ran!');
-    updateQuestionNumber();
-    initializeQuiz()
   })
-};
+} 
+
 
 
 // This runs all the functions
@@ -234,6 +245,7 @@ function makeTheQuiz() {
   initializeQuiz();
   generateQuestion()
   submitAnswer()
+  nextQuestion()
 }
 
 
