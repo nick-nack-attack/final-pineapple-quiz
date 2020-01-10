@@ -1,108 +1,122 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  .container {
-    max-width: 80%;
-    margin: auto;
-  }
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.2;
+}
 
-  .title-of-quiz {
-    width: 300px;
-  }
-  
-  .quiz-card {
-    display: block;
-    border: 2px grey solid;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: rgb(250, 250, 250);
-    height: 500px;
-  }
-  
-  b {
-    color: green;
-  }
-  
-  .response-card-correct {
-    border: 2px green dotted;
-    margin: 20px auto;
-    padding: 10px;
-    vertical-align: center;
-    background-color: rgb(220, 255, 220);
-    height: 500px;
-  }
+.container {
+  width:80%;
+  max-width: 350px;
+  margin: auto;
+}
 
-  .response-card-wrong {
-    border: 2px red dotted;
-    margin: 20px auto;
-    padding: 10px;
-    vertical-align: center;
-    background-color: rgb(255, 220, 220);
-    height: 500px;
-  }
+.quiz-card {
+  display: block;
+  border: 2px grey solid;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: rgb(250, 250, 250);
+  height: auto;
+}
 
-  .announce-card {
-    display: block;
-    border: 2px black dotted;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: yellow;
-    height: 500px;
-  }
-  
-  img {
-    height: 100px;
-    float: left;
-    margin-right: 10px;
-  }
+.title-of-quiz {
+  vertical-align: center;
+  display: flex;
+  margin: 30px auto;
+  max-width: 220px;
+}
 
-  .main-card-image {
-      margin: 0;
-      height: 100px;
-      width: 100%;
-      background-image: url('https://ichef.bbci.co.uk/images/ic/704xn/p0735xlw.jpg');
-  }
-  
-  #main-icon {
-    height: 75px;
-  }
+#main_icon {
+  height: 45px;
+}
 
-  input[type="button"] {
-      border: 2px black solid;
-      padding: 5px 15px;
-      font-size: 15px;
-      width: 100%;
-      margin: 5px auto;
-      background-color: transparent;
-  }
+b {
+  color: green;
+}
 
-  input[type="button"]:hover, button:focus {
-    background-color: white;
-  }
+legend{
+  padding: 10px;
+}
 
-  .button-bar {
-      display: flex-wrap;
-      justify-content: flex-end;
-  }
+.score-div {
+  margin: 15px auto;
+}
 
-  input[type="button disabled-button"] {
-      background-color: rgb(209, 209, 209);
-  }
+.p_class {
+  margin: auto auto 15px auto;
+}
 
-  .disabled-button:hover, .disabled-button:focus {
-    background-color: rgb(179, 179, 179);
-  }
- 
-  .call-to-action {
-      font-weight: bold;
-  }
+form {
+  text-align: center;
+  margin: auto 20px;
+}
 
-  .correct-answer-label {
+.response-card-correct {
+  border: 2px green dotted;
+  margin: 20px auto;
+  padding: 10px;
+  vertical-align: center;
+  background-color: rgb(220, 255, 220);
+  height: 500px;
+}
+
+.response-card-wrong {
+  border: 2px red dotted;
+  margin: 20px auto;
+  padding: 10px;
+  vertical-align: center;
+  background-color: rgb(255, 220, 220);
+  height: 500px;
+}
+
+.announce-card {
+  display: block;
+  border: 1px black solid;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: yellow;
+  height: auto;
+  min-height: 100px;
+}
+
+.banner_image {
+  height: 100px;
+  width:100%;
+  object-fit: cover;
+  border: 1px black solid;
+}
+
+
+button:hover, button:focus {
+  background-color: rgb(233, 233, 233);
+  -webkit-transition: background-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+
+
+
+
+button {
+  border: solid rgb(87, 85, 0) 1px;
+  width: 100%;
+  height: 75px;
+  max-height: auto;
+  font-size: 15px;
+  margin: 5px auto 5px;
+}
+
+
+.call-to-action {
     font-weight: bold;
-    color: hotpink;
-  }
+}
 
-  h1 {
-      font-size: 30px;
-  }
+.correct-answer-label {
+  font-weight: bold;
+  color: hotpink;
+}
+
+h1 {
+    font-size: 20px;
+}
