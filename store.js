@@ -72,7 +72,7 @@ const STORE = [{
     card_title: 'Question 5',
     card_text: 'Pineapples ripen faster when ...',
     answers: [
-      'they explodes',
+      'they explode',
       'upside down',
       'rightside up'
     ],
