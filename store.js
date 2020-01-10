@@ -5,7 +5,7 @@ const STORE = [{
     answers: [
       'You\'re a terrible pineapple (said on opposite day)!',
       'I hate you (when \'I hate you\' means \' I love your infinite wisdom. It\'s truly magisterial\')!',
-      'Start the quiz'
+      'You\'re a faultless, incredibly delicious source of infinite happiness'
     ],
     correct_answer_title: 'Great job!',
     correct_answer_text: 'All three of those were correct. I will bump you up to zero points. Now you have nothing. Which was more than you had before. You\'re welcome.',
@@ -24,7 +24,7 @@ const STORE = [{
     correct_answer_title: 'Correct!',
     correct_answer_text: 'You can plant pineapple leaves to grow a new plant.',
     wrong_answer_title: 'Absolutely not!',
-    wrong_answer_text: 'That was an incredibly choice, my dear. What were you thinking?',
+    wrong_answer_text: 'That was an incredibly, terrible choice, my dear. What were you thinking?',
   },
   {
     card_title: 'Question 2',
@@ -91,7 +91,7 @@ const STORE = [{
     ],
     some_wrong_score_text: [
       'You didn\'t get a perfect score. Only only acceptable score in the land of pineapple',
-      'You got some wrong. This isn\'t a suprise to me. Considering you took this quiz',
+      'You got some wrong. This isn\'t a suprise to me. Considering it was you that took this quiz',
       'You got some questions right. I am absolutely shock to be honest.'
     ],
     all_wrong_score_text: [
