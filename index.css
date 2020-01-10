@@ -61,6 +61,10 @@ form {
   min-height: 100px;
 }
 
+#help-info {
+  text-align: center;
+}
+
 .banner_image {
   height: 100px;
   width:100%;
