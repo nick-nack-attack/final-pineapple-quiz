@@ -10,7 +10,7 @@ const STORE = [{
     correct_answer_title: 'Great job!',
     correct_answer_text: 'All three of those were correct. I will bump you up to zero points. Now you have nothing. Which was more than you had before. You\'re welcome.',
     replay_card_title: 'Wow, you\'re back?',
-    replay_card_text: 'I didn\'t think you\'d actually play again. Well ... I\'m still starting you off with negative ten points. You don\'t get special treatment just because you done pineappled before.'
+    replay_card_text: 'I didn\'t think you\'d actually play again. Well ... I\'m still starting you off with negative ten points. You don\'t get special treatment just because you done pineapple\'d before.'
   },
   {
     card_title: 'Question 1',
@@ -60,7 +60,7 @@ const STORE = [{
     answers: [
       'That\'s a dangerous question to ask ...',
       'one',
-      'depends on its nationality and procivity for sassiness'
+      'depends on its nationality and proclivity for sassiness'
     ],
     the_correct_answer_is: 'one',
     correct_answer_title: 'Absolutely!',
@@ -72,7 +72,7 @@ const STORE = [{
     card_title: 'Question 5',
     card_text: 'Pineapples ripen faster when ...',
     answers: [
-      'it explodes',
+      'they explodes',
       'upside down',
       'rightside up'
     ],
