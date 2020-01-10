@@ -60,7 +60,7 @@ const STORE = [{
     answers: [
       'That\'s a dangerous question to ask ...',
       'one',
-      'depends on its nationality and proclivity for sassiness'
+      'depends on its nationality and penchant for sassiness'
     ],
     the_correct_answer_is: 'one',
     correct_answer_title: 'Absolutely!',
